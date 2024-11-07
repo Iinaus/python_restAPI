@@ -1,15 +1,15 @@
 class UsersMongodbRepository:
-    def get_all():
-        pass
+    def get_all(self):
+        print('##### users_mongodb_repository / get_all: TOIMII')
 
-    def get_by_id():
-        pass
+    def get_by_id(self):
+        print('##### users_mongodb_repository / get_by_id: TOIMII')
 
-    def create():
-        pass
+    def create(self):
+        print('##### users_mongodb_repository / create: TOIMII')
 
-    def update_by_id():
-        pass
+    def update_by_id(self):
+        print('##### users_mongodb_repository / update_by_id: TOIMII')
 
-    def update_by_id():
-        pass
+    def delete_by_id(self):
+        print('##### users_mongodb_repository / delete: TOIMII')

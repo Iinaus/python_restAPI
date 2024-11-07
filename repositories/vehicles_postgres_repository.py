@@ -1,15 +1,15 @@
 class VehiclesPostgresRepository:
-    def get_all():
+    def get_all(self):
         pass
 
-    def get_by_id():
+    def get_by_id(self):
         pass
 
-    def create():
+    def create(self):
         pass
 
-    def update_by_id():
+    def update_by_id(self):
         pass
 
-    def update_by_id():
+    def update_by_id(self):
         pass
