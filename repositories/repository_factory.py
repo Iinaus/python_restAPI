@@ -10,36 +10,36 @@ from repositories.vehicles_mysql_repository import VehiclesMysqlRepository
 from repositories.vehicles_postgres_repository import VehiclesPostgresRepository
 
 
-def users_repository_factory():
+def users_repository_factory(con):
     _db = Config.DB
     print(_db)
     if _db == 'mysql':
-        return UsersMysqlRepository()
+        return UsersMysqlRepository(con)
     elif _db == 'postgres':
-        return UsersPostgresRepository()
+        return UsersPostgresRepository(con)
     elif _db == 'mongoDB':
-        return UsersMongodbRepository()
+        return UsersMongodbRepository(con)
     else:
         raise ValueError(f"Invalid database type: {_db}. Accepted values are: mysql, postgres, mongoDB.")
 
-def products_repository_factory():
+def products_repository_factory(con):
     _db = Config.DB
     if _db == 'mysql':
-        return ProductsMysqlRepository()
+        return ProductsMysqlRepository(con)
     elif _db == 'postgres':
-        return ProductsPostgresRepository()
+        return ProductsPostgresRepository(con)
     elif _db == 'mongoDB':
-        return ProductsMongodbRepository()
+        return ProductsMongodbRepository(con)
     else:
         raise ValueError(f"Invalid database type: {_db}. Accepted values are: mysql, postgres, mongoDB.")
     
-def vehicles_repository_factory():
+def vehicles_repository_factory(con):
     _db = Config.DB
     if _db == 'mysql':
-        return VehiclesMysqlRepository()
+        return VehiclesMysqlRepository(con)
     elif _db == 'postgres':
-        return VehiclesPostgresRepository()
+        return VehiclesPostgresRepository(con)
     elif _db == 'mongoDB':
-        return VehiclesMongodbRepository()
+        return VehiclesMongodbRepository(con)
     else:
         raise ValueError(f"Invalid database type: {_db}. Accepted values are: mysql, postgres, mongoDB.")

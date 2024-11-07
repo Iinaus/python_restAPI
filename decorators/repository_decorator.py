@@ -3,15 +3,15 @@ from repositories.repository_factory import products_repository_factory, users_r
 
 def get_repository(name):
     def decorator(route_handler):
-        def wrapper(*args, **kwargs):
+        def wrapper(con, *args, **kwargs):
             repo = None
             try:
                 if name == 'users':
-                    repo = users_repository_factory()
+                    repo = users_repository_factory(con)
                 elif name == 'products':
-                    repo = products_repository_factory()
+                    repo = products_repository_factory(con)
                 elif name == 'vehicles':
-                    repo = vehicles_repository_factory()
+                    repo = vehicles_repository_factory(con)
                 else:
                     raise ValueError(f"Unknown repository name '{name}'")
 
