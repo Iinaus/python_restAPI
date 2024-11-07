@@ -1,5 +1,11 @@
+from flask import jsonify
+
+
 def get_all_users():
-    print('##### Users_controller / get_all_users: TOIMII')
+    try:
+        print('##### Users_controller / get_all_users: TOIMII')
+    except Exception as e:
+        return jsonify({'err': str(e)}), 500
 
 def get_user_by_id(id):
     print('##### Users_controller / get_user_by_id: TOIMII')
