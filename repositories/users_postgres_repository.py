@@ -1,4 +1,7 @@
 class UsersPostgresRepository:
+    def __init__(self, con):
+        self.con = con
+        
     def get_all(self):
         pass
 
