@@ -1,4 +1,4 @@
-class VechilesPostgresRepository:
+class VehiclesPostgresRepository:
     def get_all():
         pass
 

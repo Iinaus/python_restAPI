@@ -1,4 +1,4 @@
-class VechilesMongodbRepository:
+class VehiclesMongodbRepository:
     def get_all():
         pass
 
