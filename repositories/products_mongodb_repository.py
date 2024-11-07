@@ -14,5 +14,5 @@ class ProductsMongodbRepository:
     def update_by_id(self):
         pass
 
-    def update_by_id(self):
+    def delete_by_id(self):
         pass
