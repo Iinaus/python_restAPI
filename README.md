@@ -60,7 +60,7 @@ The base URL in a local development environment is http://127.0.0.1:5000/api.
 
 #### Users
 
-#### GET /users
+##### GET /users
 - **Description:** Retrieves information about all users.
 - **Response:** 
    - **Status 200 (OK):** Returns a JSON array of user objects. Each object contains user information such as `username`, `firstname`, `lastname`.
