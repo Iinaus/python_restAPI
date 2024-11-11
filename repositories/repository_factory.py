@@ -12,7 +12,6 @@ from repositories.vehicles_postgres_repository import VehiclesPostgresRepository
 
 def users_repository_factory(con):
     _db = Config.DB
-    print(_db)
     if _db == 'mysql':
         return UsersMysqlRepository(con)
     elif _db == 'postgres':
