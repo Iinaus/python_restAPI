@@ -1,13 +1,18 @@
-from flask import jsonify
+from flask import jsonify, request
+from werkzeug.exceptions import NotFound
 
 from decorators.db_connection_decorator import get_db_connection
 from decorators.repository_decorator import get_repository
+import models
+import services.product_services
 
 @get_db_connection
 @get_repository('products')
 def get_all_products(repo):
     try:
-        repo.get_all()
+        products = repo.get_all()
+        products_json = services.product_services.ProductService.list_to_json(products)
+        return jsonify(products_json)
     except Exception as e:
         return jsonify({'err': str(e)}), 500
 
@@ -15,7 +20,10 @@ def get_all_products(repo):
 @get_repository('products')
 def get_product_by_id(repo, id):
     try:
-        repo.get_by_id()
+        product = repo.get_by_id(id)
+        return jsonify(product.to_json())
+    except NotFound:
+        return jsonify({'err': 'product not found'}), 404
     except Exception as e:
         return jsonify({'err': str(e)}), 500
 
@@ -23,7 +31,10 @@ def get_product_by_id(repo, id):
 @get_repository('products')
 def create_product(repo):
     try:
-        repo.create()
+        req_data = request.get_json()
+        new_product = models.Product(0, req_data['name'], req_data['description'])
+        product = repo.create(new_product)
+        return jsonify(product.to_json())
     except Exception as e:
         return jsonify({'err': str(e)}), 500
 
@@ -31,7 +42,12 @@ def create_product(repo):
 @get_repository('products')
 def update_product_by_id(repo, id):
     try:
-        repo.update_by_id()
+        product = repo.get_by_id(id)
+        req_data = request.get_json()
+        updated_product = repo.update_by_id(product, req_data)
+        return jsonify(updated_product.to_json())
+    except NotFound:
+        return jsonify({'err': 'product not found'}), 404
     except Exception as e:
         return jsonify({'err': str(e)}), 500
 
@@ -39,6 +55,10 @@ def update_product_by_id(repo, id):
 @get_repository('products')
 def delete_product_by_id(repo, id):
     try:
-        repo.delete_by_id()
+        product = repo.get_by_id(id)
+        repo.delete_by_id(product)
+        return jsonify(), 200
+    except NotFound:
+        return jsonify({'err': 'product not found'}), 404
     except Exception as e:
         return jsonify({'err': str(e)}), 500
