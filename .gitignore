@@ -33,6 +33,7 @@ htmlcov/
 
 *.bson
 *.json
+!openapi.json
 
 mypy_cache/
 pylint_report.txt
