@@ -11,8 +11,12 @@ class ProductService:
         )
     
     @staticmethod
-    def list_to_json(users_list):
+    def list_to_json(product_list):
         json_list = []
-        for u in users_list:
-            json_list.append(u.to_json())
+        for p in product_list:
+            json_list.append(ProductService.to_json(p))
         return json_list
+    
+    @staticmethod
+    def to_json(product):
+        return {"id": product.id, "name": product.name, "description": product.description}

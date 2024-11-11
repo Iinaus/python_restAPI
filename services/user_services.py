@@ -16,5 +16,9 @@ class UserService:
     def list_to_json(users_list):
         json_list = []
         for u in users_list:
-            json_list.append(u.to_json())
+            json_list.append(UserService.to_json(u))
         return json_list
+    
+    @staticmethod
+    def to_json(user):
+        return {"id": user.id, "username": user.username, "firstname": user.firstname, "lastname": user.lastname}
