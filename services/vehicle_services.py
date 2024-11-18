@@ -4,8 +4,8 @@ import models
 class VehicleService:
     @staticmethod
     def vehicle_tuple_to_vehicle(vehicle_tuple):
-        if not isinstance(vehicle_tuple, tuple) or len(vehicle_tuple) != 4:
-            raise ValueError("vehicle_tuple must be a tuple of length 4.")
+        if not isinstance(vehicle_tuple, tuple) or len(vehicle_tuple) != 3:
+            raise ValueError("vehicle_tuple must be a tuple of length 3.")
 
         return models.Vehicle(
             _id = vehicle_tuple[0],
@@ -25,7 +25,7 @@ class VehicleService:
     
     @staticmethod
     def to_json(vehicle):
-        if not isinstance(vehicle, models.User):
+        if not isinstance(vehicle, models.Vehicle):
             raise ValueError("Input must be a Vehicle instance.")
         
         return {"id": vehicle.id, "make": vehicle.make, "model": vehicle.model}
